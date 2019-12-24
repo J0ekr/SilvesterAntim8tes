@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Home from '@/views/Home'
 import About from '@/views/About'
+import Question from '@/views/Question'
 
 Vue.use(Router)
 
@@ -15,6 +16,13 @@ export default new Router({
             path: '/about',
             name: 'About',
             component: About
+        },
+        {
+            path: '/question',
+            name: 'Question',
+            component: Question,
+
         }
+
     ]
 })
