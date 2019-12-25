@@ -7,6 +7,7 @@ import Question from '@/views/Question'
 Vue.use(Router)
 
 export default new Router({
+    mode: 'history',
     routes: [{
             path: '/',
             name: 'Home',
@@ -21,6 +22,10 @@ export default new Router({
             path: '/question',
             name: 'Question',
             component: Question,
+            children: [{
+                path: '/question/:id/:points',
+                name: 'quest',
+            }]
 
         }
 

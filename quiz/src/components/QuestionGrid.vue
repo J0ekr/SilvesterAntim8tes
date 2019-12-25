@@ -10,10 +10,12 @@
             tile
             :color=q.color
             v-bind="t"
-            :to="t.text+q.text"
+            :key="q.nr+t.nr"
+            :to="{path: '/question/' + t.text+'/'+q.text}"
           >
             <div v-if="q.nr < 2"> {{t.text}}</div>
             <div v-if="q.nr > 1">{{q.text}}</div>
+            <!-- <div v-if="{{this.$store.Questions[t.text+q.text]}} = false">clicked</div> -->
           </v-card>
         </v-col>
       </template>
