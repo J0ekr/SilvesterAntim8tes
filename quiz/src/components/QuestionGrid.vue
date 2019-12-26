@@ -8,13 +8,12 @@
               class="pa-2"
               outlined
               tile
-              :color="q.color"
+              :disabled="$store.getters.Questions[t.text+q.text].isClicked"
+              :color="$store.getters.Questions[t.text+q.text].col"
               :to="{path: '/question/' + t.text+'/'+q.text}"
-              :key="q.nr+t.nr"
             >
               <div v-if="q.nr < 2">{{t.text}}</div>
               <div v-if="q.nr > 1">{{q.text}}</div>
-              <!-- <div v-if="{{this.$store.Questions[t.text+q.text]}} = false">clicked</div> -->
             </v-card>
           </v-col>
         </template>

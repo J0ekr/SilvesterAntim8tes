@@ -25,7 +25,6 @@ export default {
 
   watch: {
     $route() {
-      
       this.Teams = this.$store.getters.Teams;
       this.points = this.$route.params.points;
       this.qID = this.$route.params.id + this.$route.params.points;
