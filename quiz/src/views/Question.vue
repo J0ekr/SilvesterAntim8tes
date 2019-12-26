@@ -1,6 +1,7 @@
 <template>
   <div class="question">
-    <h1 :v-bind="this.qID">{{this.qID}} {{this.question.content}}</h1>
+    <h1 :v-bind="this.qID">{{this.qID}} </h1>
+    <h2>{{this.question.content}}</h2>
     <v-row>
       <template v-for="t in this.Teams">
         <v-col v-bind:key="t.nr">

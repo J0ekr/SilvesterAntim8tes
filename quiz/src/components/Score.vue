@@ -4,7 +4,7 @@
       <template v-for="t in this.Teams">
         <v-col :key="t.nr">
           <v-card class="pa-2" outlined tile>
-            <div>{{t.name}}:{{t.score}}</div>
+            <div>{{t.name}}: <b> {{t.score}}</b> Punkte</div>
           </v-card>
         </v-col>
       </template>

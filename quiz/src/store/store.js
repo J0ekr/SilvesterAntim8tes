@@ -104,22 +104,22 @@ export const store = new Vuex.Store({
                 isClicked: false,
                 col: "blue",
             },
-            Fill0: {
+            Musik: {
                 content: "",
                 isClicked: true,
                 col: "red",
             },
-            Fill050: {
+            Musik50: {
                 content: "Sport50 question.",
                 isClicked: false,
                 col: "blue",
             },
-            Fill0100: {
+            Musik100: {
                 content: "Sport100 question.",
                 isClicked: false,
                 col: "blue",
             },
-            Fill0200: {
+            Musik200: {
                 content: "Sport200 question.",
                 isClicked: false,
                 col: "blue",
@@ -204,62 +204,62 @@ export const store = new Vuex.Store({
                 isClicked: false,
                 col: "blue",
             },
-            Fill: {
+            Filme: {
                 content: "",
                 isClicked: true,
                 col: "red",
             },
-            Fill50: {
+            Filme50: {
                 content: "Sport50 question.",
                 isClicked: false,
                 col: "blue",
             },
-            Fill100: {
+            Filme100: {
                 content: "Sport100 question.",
                 isClicked: false,
                 col: "blue",
             },
-            Fill200: {
+            Filme200: {
                 content: "Sport200 question.",
                 isClicked: false,
                 col: "blue",
             },
-            Fill1: {
+            Unnützes: {
                 content: "",
                 isClicked: true,
                 col: "red",
             },
-            Fill150: {
+            Unnützes50: {
                 content: "Sport50 question.",
                 isClicked: false,
                 col: "blue",
             },
-            Fill1100: {
+            Unnützes100: {
                 content: "Sport100 question.",
                 isClicked: false,
                 col: "blue",
             },
-            Fill1200: {
+            Unnützes200: {
                 content: "Sport200 question.",
                 isClicked: false,
                 col: "blue",
             },
-            Fill2: {
+            Geschichte: {
                 content: "",
                 isClicked: true,
                 col: "red",
             },
-            Fill250: {
-                content: "Sport50 question.",
+            Geschichte50: {
+                content: "Wie heißt dieser 1 Dude mit dem Schnauzer?",
                 isClicked: false,
                 col: "blue",
             },
-            Fill2100: {
+            Geschichte100: {
                 content: "Sport100 question.",
                 isClicked: false,
                 col: "blue",
             },
-            Fill2200: {
+            Geschichte200: {
                 content: "Sport200 question.",
                 isClicked: false,
                 col: "blue",
