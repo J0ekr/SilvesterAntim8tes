@@ -8,7 +8,7 @@
           class="pa-2" 
           outlined 
           tile 
-          @click="updatePoints(t, this.points)"
+          @click="updatePoints(t)"
           >
             <div>Win {{t.name}}</div>
           </v-card>
@@ -25,16 +25,17 @@ export default {
 
   watch: {
     $route() {
-    
+      
       this.Teams = this.$store.getters.Teams;
       this.points = this.$route.params.points;
       this.qID = this.$route.params.id + this.$route.params.points;
       this.question = this.$store.getters.Questions[this.qID];
-      window.console.log("route changed:", this.qID)
+      window.console.log("route changed:", this.qID, this.points)
     }
   },
   methods: {
-    updatePoints(Team, points) {
+    updatePoints(Team) {
+      let points = this.$route.params.points;
       window.console.log("updatePoints:", Team, points);
       this.$store.commit("changeQuestionIsClicked", this.qID);
       this.$store.commit("changeTeamScore", { Team, points });
@@ -43,7 +44,7 @@ export default {
   },
   created() {
     this.Teams = this.$store.getters.Teams;
-    this.points = this.$route.params.points;
+    
     this.qID = this.$route.params.id + this.$route.params.points;
     this.question = this.$store.getters.Questions[this.qID];
   }

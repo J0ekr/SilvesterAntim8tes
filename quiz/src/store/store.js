@@ -6,32 +6,38 @@ export const store = new Vuex.Store({
     state: {
         Teams: {
             Team1: {
-                name: "Team 1",
+                name: "Team1",
+                text: "",
                 score: 0,
                 nr: 1,
             },
             Team2: {
-                name: "Team 2",
+                name: "Team2",
+                text: "",
                 score: 0,
                 nr: 2
             },
             Team3: {
-                name: "Team 3",
+                name: "Team3",
+                text: "",
                 score: 0,
                 nr: 3,
             },
             Team4: {
-                name: "Team 4",
+                name: "Team4",
+                text: "",
                 score: 0,
                 nr: 4,
             },
             Team5: {
-                name: "Team 5",
+                name: "Team5",
+                text: "",
                 score: 0,
                 nr: 5
             },
             Team6: {
-                name: "Team 6",
+                name: "Team6",
+                text: "",
                 score: 0,
                 nr: 6
             },
@@ -61,6 +67,18 @@ export const store = new Vuex.Store({
                 content: "Sport200 question.",
                 isClicked: false,
             },
+            Technik50: {
+                content: "Sport50 question.",
+                isClicked: false,
+            },
+            Technik100: {
+                content: "Sport100 question.",
+                isClicked: false,
+            },
+            Technik200: {
+                content: "Sport200 question.",
+                isClicked: false,
+            },
         }
 
     },
@@ -69,9 +87,7 @@ export const store = new Vuex.Store({
             state.Teams[Team].name = name
         },
         changeTeamScore(state, event) {
-            state.Teams["Team1"].score += event.points
-            window.console.log("Team:", event.Team)
-            window.console.log("score:", event.points)
+            state.Teams[event.Team.name].score += parseInt(event.points)
 
             // state.Teams[event.Team].score = event.points
         },
