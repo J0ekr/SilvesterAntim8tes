@@ -47,6 +47,14 @@ export default {
         { text: "Fill3", nr: 11 }
       ]
     };
+  },
+  watch: {
+    $route() {
+      if (this.$store.getters.GameCounter >= 6) {
+        this.$store.commit("resetGameCounter");
+        route.push("/Game");
+      }
+    }
   }
 };
 </script>

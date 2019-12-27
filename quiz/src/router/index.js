@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Home from '@/views/Home'
+import Game from '@/views/Game'
 import About from '@/views/About'
 import Question from '@/views/Question'
 
@@ -12,6 +13,11 @@ export default new Router({
             path: '/',
             name: 'Home',
             component: Home
+        },
+        {
+            path: "/Game",
+            name: Game,
+            component: Game,
         },
         {
             path: '/about',
