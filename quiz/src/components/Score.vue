@@ -2,9 +2,12 @@
   <v-container class="orange lighten-5">
     <v-row>
       <template v-for="t in this.Teams">
-        <v-col :key="t.nr">
-          <v-card class="pa-2" outlined tile>
-            <div>{{t.name}}: <b> {{t.score}}</b> Punkte</div>
+        <v-col v-bind:key="t.nr">
+          <v-card v-bind:key="t.nr" class="pa-2" outlined tile>
+            <div>
+              {{t.name}}:
+              <b>{{t.score}}</b> Punkte
+            </div>
           </v-card>
         </v-col>
       </template>
@@ -20,7 +23,10 @@ export default {
   watch: {
     $store() {
       this.Teams = this.$store.getters.Teams;
-    }
+    },
+    $route() {
+      this.Teams = this.$store.getters.Teams;
+    },
   },
   created() {
     this.Teams = this.$store.getters.Teams;

@@ -1,6 +1,6 @@
 <template>
   <div class="question">
-    <h1 :v-bind="this.qID">{{this.qID}} </h1>
+    <h1 key:v-bind="this.qID">{{this.qID}} </h1>
     <h2>{{this.question.content}}</h2>
     <v-row>
       <template v-for="t in this.Teams">
@@ -23,7 +23,12 @@
 <script>
 export default {
   data() {
-    return {};
+    return {
+      qID: null,
+      Teams: null,
+      question: null,
+      points: null,
+    };
   },
 
   watch: {
