@@ -12,7 +12,7 @@
               :color="$store.getters.Questions[t.text+q.text].col"
               :to="{path: '/question/' + t.text+'/'+q.text}"
             >
-              <div v-if="q.nr < 2">{{t.text}}</div>
+              <div v-if="q.nr < 2"><b>{{t.text}}</b></div>
               <div v-if="q.nr > 1">{{q.text}}</div>
             </v-card>
           </v-col>
@@ -37,14 +37,14 @@ export default {
         { text: "Politik", nr: 1 },
         { text: "Sport", nr: 2 },
         { text: "Technik", nr: 3 },
-        { text: "Fill0", nr: 4 },
+        { text: "Musik", nr: 4 },
         { text: "Geographie", nr: 5 },
         { text: "Internet", nr: 6 },
         { text: "Bücher", nr: 7 },
         { text: "Zoologie", nr: 8 },
-        { text: "Fill", nr: 9 },
-        { text: "Fill2", nr: 10 },
-        { text: "Fill3", nr: 11 }
+        { text: "Filme", nr: 9 },
+        { text: "Unnützes", nr: 10 },
+        { text: "Geschichte", nr: 11 }
       ]
     };
   },
