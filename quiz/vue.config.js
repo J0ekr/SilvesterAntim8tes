@@ -1,5 +1,6 @@
 module.exports = {
-  "transpileDependencies": [
-    "vuetify"
-  ]
+    publicPath: '/Antim8s/',
+    outputDir: 'Antim8s',
+    indexPath: 'index.html',
+
 }

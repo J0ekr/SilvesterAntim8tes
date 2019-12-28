@@ -7,15 +7,18 @@
           <img style="width:100%" :src="selectedImage" alt />
         </p>
       </div>
-      <router-view></router-view>
+      <PointsFooter />
     </v-content>
   </v-app>
 </template>
 
 <script>
+import PointsFooter from '@/components/PointsFooter'
 export default {
   name: "Game",
-  components: {},
+  components: {
+    PointsFooter
+  },
   data() {
     return {
       images: [
