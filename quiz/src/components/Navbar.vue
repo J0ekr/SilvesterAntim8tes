@@ -33,6 +33,7 @@
         { icon: 'mdi-view-dashboard', text: 'Home', route: '/' },
         { icon: 'mdi-folder', text: 'Quiz', route: '/Quiz' },
         { icon: 'mdi-settings', text: 'Settings', route: '/Settings' },
+        { icon: 'mdi-play', text: 'Game', route: '/Game' },
       ]
       }
     },

@@ -26,7 +26,7 @@ export default {
     },
     $route() {
       // this.Teams = this.$store.getters.Teams;
-    },
+    }
   },
   created() {
     // this.Teams = this.$store.getters.Teams;

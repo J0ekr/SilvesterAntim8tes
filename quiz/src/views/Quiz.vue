@@ -1,11 +1,9 @@
 <template>
-  <!-- <v-app> -->
   <v-content>
     <QuestionGrid />
     <Score />
     <router-view></router-view>
   </v-content>
-  <!-- </v-app> -->
 </template>
 
 <script>

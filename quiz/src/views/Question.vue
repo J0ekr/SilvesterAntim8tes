@@ -1,6 +1,8 @@
 <template>
   <div class="question">
-    <div aign="center"><h1 key:v-bind="this.qID">{{this.qID}}</h1></div>
+    <div aign="center">
+      <h1 key:v-bind="this.qID">{{this.qID}}</h1>
+    </div>
     <h2>{{this.question.content}}</h2>
     <v-footer app class="blue-grey darken-3">
       <v-row>
@@ -25,7 +27,6 @@ export default {
   data() {
     return {
       qID: null,
-      // Teams: null,
       question: null,
       points: null
     };
@@ -33,7 +34,6 @@ export default {
 
   watch: {
     $route() {
-      // this.Teams = this.$store.getters.Teams;
       this.points = this.$route.params.points;
       this.qID = this.$route.params.id + this.$route.params.points;
       this.question = this.$store.getters.Questions[this.qID];
@@ -52,7 +52,6 @@ export default {
     }
   },
   created() {
-    // this.Teams = this.$store.getters.Teams;
     this.NoWinner = "NoWinner";
     this.qID = this.$route.params.id + this.$route.params.points;
     this.question = this.$store.getters.Questions[this.qID];

@@ -1,5 +1,4 @@
 <template>
-  <!-- <v-app> -->
   <v-content>
     <h1>Change Team Names</h1>
     <h3>Press Enter to confirm</h3>
@@ -35,7 +34,6 @@
     </v-container>
     <router-view></router-view>
   </v-content>
-  <!-- </v-app> -->
 </template>
 
 <script>
@@ -59,7 +57,6 @@ export default {
   },
   methods: {
     updateName(Team, event) {
-      // event.target.value
       if (Team != "" && event.target.value != "") {
         this.$store.commit("changeTeamName", {
           Team: Team,
@@ -67,10 +64,6 @@ export default {
         });
       }
     }
-  },
-  mounted() {
-    window.console.log(this.currentTeam);
-    //   this.$store.commit("changeTeamName", { Team: "Teamname", name: "asfd" });
   }
 };
 </script>
