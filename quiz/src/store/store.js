@@ -11,31 +11,31 @@ export const store = new Vuex.Store({
         Teams: {
             Team1: {
                 name: "Team1",
-                text: "",
+                text: "Team 1",
                 score: 0,
                 nr: 1,
             },
             Team2: {
                 name: "Team2",
-                text: "",
+                text: "Team 2",
                 score: 0,
                 nr: 2
             },
             Team3: {
                 name: "Team3",
-                text: "",
+                text: "Team 3",
                 score: 0,
                 nr: 3,
             },
             Team4: {
                 name: "Team4",
-                text: "",
+                text: "Team 4",
                 score: 0,
                 nr: 4,
             },
             Team5: {
                 name: "Team5",
-                text: "",
+                text: "Team 5",
                 score: 0,
                 nr: 5
             },
@@ -284,8 +284,8 @@ export const store = new Vuex.Store({
         }
     },
     mutations: {
-        changeTeamName(state, Team, name) {
-            state.Teams[Team].name = name
+        changeTeamName(state, params) {
+            state.Teams[params.Team].text = params.name
         },
         increaseGameCounter(state) {
             state.GameCounter += 1

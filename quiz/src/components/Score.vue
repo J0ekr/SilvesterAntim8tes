@@ -1,11 +1,11 @@
 <template>
   <v-container class="orange lighten-5">
     <v-row>
-      <template v-for="t in this.Teams">
+      <template v-for="t in this.$store.getters.Teams">
         <v-col v-bind:key="t.nr">
           <v-card v-bind:key="t.nr" class="pa-2" outlined tile>
             <div>
-              {{t.name}}:
+              {{t.text}}:
               <b>{{t.score}}</b> Punkte
             </div>
           </v-card>
@@ -22,14 +22,14 @@ export default {
   },
   watch: {
     $store() {
-      this.Teams = this.$store.getters.Teams;
+      // this.Teams = this.$store.getters.Teams;
     },
     $route() {
-      this.Teams = this.$store.getters.Teams;
+      // this.Teams = this.$store.getters.Teams;
     },
   },
   created() {
-    this.Teams = this.$store.getters.Teams;
+    // this.Teams = this.$store.getters.Teams;
   }
 };
 </script>
