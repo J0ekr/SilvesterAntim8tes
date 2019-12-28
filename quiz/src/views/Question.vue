@@ -48,7 +48,7 @@ export default {
         let points = this.$route.params.points;
         this.$store.commit("changeTeamScore", { Team, points });
       }
-      this.$router.push("/");
+      this.$router.push("/Quiz");
     }
   },
   created() {

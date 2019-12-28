@@ -10,7 +10,7 @@
               tile
               :disabled="$store.getters.Questions[t.text+q.text].isClicked"
               :color="$store.getters.Questions[t.text+q.text].col"
-              :to="{path: '/question/' + t.text+'/'+q.text}"
+              :to="{path: '/Quiz/question/' + t.text+'/'+q.text}"
             >
               <div v-if="q.nr < 2"><b>{{t.text}}</b></div>
               <div v-if="q.nr > 1">{{q.text}}</div>
@@ -50,9 +50,10 @@ export default {
   },
   watch: {
     $route() {
+      window.console.log(this.$store.getters.GameCounter)
       if (this.$store.getters.GameCounter >= 6) {
         this.$store.commit("resetGameCounter");
-        // router.push("/Game");
+        this.$router.push("/Game");
       }
     }
   }

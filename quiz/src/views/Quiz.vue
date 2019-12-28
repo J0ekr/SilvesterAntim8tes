@@ -1,0 +1,25 @@
+<template>
+  <!-- <v-app> -->
+  <v-content>
+    <QuestionGrid />
+    <Score />
+    <router-view></router-view>
+  </v-content>
+  <!-- </v-app> -->
+</template>
+
+<script>
+import QuestionGrid from "@/components/QuestionGrid";
+import Score from "@/components/Score";
+
+export default {
+  name: "Quiz",
+  components: {
+    QuestionGrid,
+    Score
+  },
+  data() {
+    return {};
+  }
+};
+</script>

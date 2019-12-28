@@ -31,7 +31,7 @@
       drawer: false,
       links: [
         { icon: 'mdi-view-dashboard', text: 'Home', route: '/' },
-        { icon: 'mdi-folder', text: 'About', route: '/about' },
+        { icon: 'mdi-folder', text: 'Quiz', route: '/Quiz' },
       ]
       }
     },
