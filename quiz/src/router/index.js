@@ -5,19 +5,20 @@ import Game from '@/views/Game'
 import Quiz from '@/views/Quiz'
 import Settings from '@/views/Settings'
 import Question from '@/views/Question'
+import Picture from '@/views/Picture'
 
 Vue.use(Router)
 
 export default new Router({
     mode: 'history',
     routes: [{
-            path: '/',
+            path: '/Antim8s/',
             name: 'Home',
             component: Home,
         },
         {
-            path: '/Quiz',
-            name: Quiz,
+            path: '/Antim8s/Quiz',
+            name: "Quiz",
             component: Quiz,
             children: [{
                 path: 'question',
@@ -32,12 +33,22 @@ export default new Router({
             }, ]
         },
         {
-            path: '/Game',
+            path: '/Antim8s/Game',
             name: 'Game',
-            component: Game
+            component: Game,
+            children: [{
+                path: 'Picture',
+                name: "Picture",
+                component: Picture,
+                children: [{
+                    path: ':points',
+                    name: 'pic'
+
+                }]
+            }]
         },
         {
-            path: '/Settings',
+            path: '/Antim8s/Settings',
             name: 'Settings',
             component: Settings
         },

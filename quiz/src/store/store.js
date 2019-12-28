@@ -7,6 +7,7 @@ let q200_col = "cyan darken-2"
 Vue.use(Vuex)
 export const store = new Vuex.Store({
     state: {
+        image_idx: null,
         GameCounter: 0,
         Teams: {
             Team1: {
@@ -302,10 +303,24 @@ export const store = new Vuex.Store({
             state.Questions[Question].isClicked = true
             state.Questions[Question].col = "grey"
         },
+        UpdateImageIdx(state, id) {
+            window.console.log("update", id)
+            if (state.image_idx != null) {
+                state.image_idx.splice(id, 1)
+                window.console.log("update penis", state.image_idx.splice(id, 1))
+            }
+            window.console.log("update after", state.image_idx)
+
+        },
+        InitImageIdx(state, idx) {
+            window.console.log("store", idx)
+            state.image_idx = idx
+        },
     },
     getters: {
         Teams: state => state.Teams,
         Questions: state => state.Questions,
-        GameCounter: state => state.GameCounter
+        GameCounter: state => state.GameCounter,
+        image_idx: state => state.image_idx
     }
 })
