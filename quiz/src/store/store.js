@@ -43,6 +43,12 @@ export const store = new Vuex.Store({
                 nr: 5
             },
         },
+        QuestionValues: {
+            q: { text: "", nr: 1, color: "blue lighten-1" },
+            q50: { text: "50", nr: 2, color: "blue lighten-3" },
+            q100: { text: "100", nr: 3, color: "blue lighten-4" },
+            q200: { text: "200", nr: 4, color: "blue lighten-5" }
+        },
         Questions: {
             Politik: {
                 content: "",
@@ -284,7 +290,21 @@ export const store = new Vuex.Store({
                 isClicked: false,
                 col: q200_col,
             },
-        }
+        },
+        Topics: {
+            T1: { text: "Politik", nr: 1 },
+            T2: { text: "Sport", nr: 2 },
+            T3: { text: "Technik", nr: 3 },
+            T4: { text: "Musik", nr: 4 },
+            T5: { text: "Geographie", nr: 5 },
+            T6: { text: "Internet", nr: 6 },
+            T7: { text: "Bücher", nr: 7 },
+            T8: { text: "Zoologie", nr: 8 },
+            T9: { text: "Filme", nr: 9 },
+            T10: { text: "Unnützes", nr: 10 },
+            T11: { text: "Geschichte", nr: 11 },
+            T12: { text: "Thema", nr: 12 },
+        },
     },
     mutations: {
         changeTeamName(state, params) {
@@ -304,8 +324,6 @@ export const store = new Vuex.Store({
         },
         changeTeamScore(state, event) {
             state.Teams[event.Team.name].score += parseInt(event.points)
-
-            // state.Teams[event.Team].score = event.points
         },
         changeQuestionIsClicked(state, Question) {
             state.Questions[Question].isClicked = true
@@ -336,6 +354,8 @@ export const store = new Vuex.Store({
         QuizCounter: state => state.QuizCounter,
         GameCount: state => state.GameCount,
         videos: state => state.videos,
-        current_video: state => state.current_video
+        current_video: state => state.current_video,
+        Topics: state => state.Topics,
+        QuestionValues: state => state.QuestionValues
     }
 })

@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Home from '@/views/Home'
 import Game from '@/views/Game'
+import Upload from '@/views/Upload'
 import Quiz from '@/views/Quiz'
 import Settings from '@/views/Settings'
 import Question from '@/views/Question'
@@ -52,6 +53,16 @@ export default new Router({
             name: 'Settings',
             component: Settings
         },
+        {
+            path: '/Antim8s/Upload',
+            name: 'Upload',
+            component: Upload,
+            children: [{
+                path: ':topic',
+                name: 'topic'
+            }]
+        },
+
 
 
 
