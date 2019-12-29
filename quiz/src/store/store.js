@@ -50,17 +50,17 @@ export const store = new Vuex.Store({
                 col: q_col,
             },
             Politik50: {
-                content: "Politik50 question.",
+                content: "",
                 isClicked: false,
                 col: q50_col,
             },
             Politik100: {
-                content: "Politik100 question.",
+                content: "",
                 isClicked: false,
                 col: q100_col,
             },
             Politik200: {
-                content: "Politik200 question.",
+                content: "",
                 isClicked: false,
                 col: q200_col,
             },
@@ -70,17 +70,17 @@ export const store = new Vuex.Store({
                 col: q_col,
             },
             Sport50: {
-                content: "Sport50 question.",
+                content: ".",
                 isClicked: false,
                 col: q50_col,
             },
             Sport100: {
-                content: "Sport100 question.",
+                content: ".",
                 isClicked: false,
                 col: q100_col,
             },
             Sport200: {
-                content: "Sport200 question.",
+                content: "",
                 isClicked: false,
                 col: q200_col,
             },
@@ -90,17 +90,17 @@ export const store = new Vuex.Store({
                 col: q_col,
             },
             Technik50: {
-                content: "Sport50 question.",
+                content: "",
                 isClicked: false,
                 col: q50_col,
             },
             Technik100: {
-                content: "Sport100 question.",
+                content: "",
                 isClicked: false,
                 col: q100_col,
             },
             Technik200: {
-                content: "Sport200 question.",
+                content: "",
                 isClicked: false,
                 col: q200_col,
             },
@@ -110,17 +110,17 @@ export const store = new Vuex.Store({
                 col: q_col,
             },
             Musik50: {
-                content: "Sport50 question.",
+                content: "",
                 isClicked: false,
                 col: q50_col,
             },
             Musik100: {
-                content: "Sport100 question.",
+                content: "",
                 isClicked: false,
                 col: q100_col,
             },
             Musik200: {
-                content: "Sport200 question.",
+                content: "",
                 isClicked: false,
                 col: q200_col,
             },
@@ -130,17 +130,17 @@ export const store = new Vuex.Store({
                 col: q_col,
             },
             Geographie50: {
-                content: "Sport50 question.",
+                content: "",
                 isClicked: false,
                 col: q50_col,
             },
             Geographie100: {
-                content: "Sport100 question.",
+                content: "",
                 isClicked: false,
                 col: q100_col,
             },
             Geographie200: {
-                content: "Sport200 question.",
+                content: "",
                 isClicked: false,
                 col: q200_col,
             },
@@ -150,17 +150,17 @@ export const store = new Vuex.Store({
                 col: q_col,
             },
             Internet50: {
-                content: "Sport50 question.",
+                content: "",
                 isClicked: false,
                 col: q50_col,
             },
             Internet100: {
-                content: "Sport100 question.",
+                content: "",
                 isClicked: false,
                 col: q100_col,
             },
             Internet200: {
-                content: "Sport200 question.",
+                content: "",
                 isClicked: false,
                 col: q200_col,
             },
@@ -170,17 +170,17 @@ export const store = new Vuex.Store({
                 col: q_col,
             },
             Bücher50: {
-                content: "Sport50 question.",
+                content: "",
                 isClicked: false,
                 col: q50_col,
             },
             Bücher100: {
-                content: "Sport100 question.",
+                content: "",
                 isClicked: false,
                 col: q100_col,
             },
             Bücher200: {
-                content: "Sport200 question.",
+                content: "",
                 isClicked: false,
                 col: q200_col,
             },
@@ -190,17 +190,17 @@ export const store = new Vuex.Store({
                 col: q_col,
             },
             Zoologie50: {
-                content: "Sport50 question.",
+                content: "",
                 isClicked: false,
                 col: q50_col,
             },
             Zoologie100: {
-                content: "Sport100 question.",
+                content: "",
                 isClicked: false,
                 col: q100_col,
             },
             Zoologie200: {
-                content: "Sport200 question.",
+                content: "",
                 isClicked: false,
                 col: q200_col,
             },
@@ -210,17 +210,17 @@ export const store = new Vuex.Store({
                 col: q_col,
             },
             Filme50: {
-                content: "Sport50 question.",
+                content: "",
                 isClicked: false,
                 col: q50_col,
             },
             Filme100: {
-                content: "Sport100 question.",
+                content: "",
                 isClicked: false,
                 col: q100_col,
             },
             Filme200: {
-                content: "Sport200 question.",
+                content: "",
                 isClicked: false,
                 col: q200_col,
             },
@@ -230,17 +230,17 @@ export const store = new Vuex.Store({
                 col: q_col,
             },
             Unnützes50: {
-                content: "Sport50 question.",
+                content: "",
                 isClicked: false,
                 col: q50_col,
             },
             Unnützes100: {
-                content: "Sport100 question.",
+                content: "",
                 isClicked: false,
                 col: q100_col,
             },
             Unnützes200: {
-                content: "Sport200 question.",
+                content: "",
                 isClicked: false,
                 col: q200_col,
             },
@@ -250,37 +250,37 @@ export const store = new Vuex.Store({
                 col: q_col,
             },
             Geschichte50: {
-                content: "Wie heißt dieser 1 Dude mit dem Schnauzer?",
+                content: "",
                 isClicked: false,
                 col: q50_col,
             },
             Geschichte100: {
-                content: "Sport100 question.",
+                content: "",
                 isClicked: false,
                 col: q100_col,
             },
             Geschichte200: {
-                content: "Sport200 question.",
+                content: "",
                 isClicked: false,
                 col: q200_col,
             },
-            Fill3: {
+            Thema: {
                 content: "",
                 isClicked: true,
                 col: q_col,
             },
-            Fill350: {
-                content: "Sport50 question.",
+            Thema50: {
+                content: "",
                 isClicked: false,
                 col: q50_col,
             },
-            Fill3100: {
-                content: "Sport100 question.",
+            Thema100: {
+                content: "",
                 isClicked: false,
                 col: q100_col,
             },
-            Fill3200: {
-                content: "Sport200 question.",
+            Thema200: {
+                content: "",
                 isClicked: false,
                 col: q200_col,
             },

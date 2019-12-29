@@ -44,7 +44,8 @@ export default {
         { text: "Zoologie", nr: 8 },
         { text: "Filme", nr: 9 },
         { text: "Unnützes", nr: 10 },
-        { text: "Geschichte", nr: 11 }
+        { text: "Geschichte", nr: 11 },
+        { text: "Thema", nr: 12 },
       ]
     };
   },
