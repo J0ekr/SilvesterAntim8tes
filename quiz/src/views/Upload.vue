@@ -11,12 +11,13 @@
                   <v-text-field
                     dense
                     outlined
+                    :rules="loginRules"
                     v-if="question.nr > 1"
                     v-bind:key="topic.text+question.text"
                     :label="quest+question.text"
                     color="primary"
                     v-model="questions[i][j]"
-                    @keypress.enter="show"
+                    @keypress.enter="submit()"
                   ></v-text-field>
                   <v-row v-bind:key="topic.text+question.text+row">
                     <template v-for="a in 4">
@@ -24,12 +25,13 @@
                         <v-text-field
                           dense
                           outlined
+                          :rules="loginRules"
                           v-if="question.nr > 1"
                           v-bind:key="topic.text+question.text+a"
                           :label="antwort+a"
                           color="primary"
                           v-model="answers[i][j][a]"
-                          @keypress.enter="show"
+                          @keypress.enter="submit()"
                         ></v-text-field>
                       </v-col>
                     </template>
@@ -41,7 +43,7 @@
                   tile
                   color="error"
                   class="ma-0"
-                  @click="show(i)"
+                  @click="submit()"
                 >Submit</v-btn>
               </v-expansion-panel-content>
             </v-expansion-panel>
@@ -56,6 +58,7 @@
 export default {
   data() {
     return {
+      loginRules: [v => !!v || "The input is required"],
       button: "button",
       header: "header",
       content: "content",
@@ -66,18 +69,18 @@ export default {
       quest: "Question ",
       input: [],
       questions: {
-        T1: [],
-        T2: [],
-        T3: [],
-        T4: [],
-        T5: [],
-        T6: [],
-        T7: [],
-        T8: [],
-        T9: [],
-        T10: [],
-        T11: [],
-        T12: []
+        T1: {},
+        T2: {},
+        T3: {},
+        T4: {},
+        T5: {},
+        T6: {},
+        T7: {},
+        T8: {},
+        T9: {},
+        T10: {},
+        T11: {},
+        T12: {}
       },
       answers: {
         T1: { q50: [], q100: [], q200: [] },
@@ -97,16 +100,16 @@ export default {
   },
   watch: {},
   methods: {
-    show() {
+    submit() {
       window.console.log(this.questions);
       window.console.log(this.answers);
-    }
+      this.$store.commit("SaveQuestions", {questions: this.questions})
+      this.$store.commit("SaveAnswers", {answers: this.answers})
+      
+    },
+    
   },
-  computed: {
-    isQuestion(q) {
-      return q.text != "";
-    }
-  }
+  computed: {}
 };
 </script>
 

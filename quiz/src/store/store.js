@@ -1,11 +1,20 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import createPersistedState from 'vuex-persistedstate'
+import * as Cookies from 'js-cookie'
+
 let q_col = "red lighten-2"
 let q50_col = "cyan lighten-1"
 let q100_col = "cyan darken-1"
 let q200_col = "cyan darken-2"
 Vue.use(Vuex)
 export const store = new Vuex.Store({
+    plugins: [
+        createPersistedState({
+            getState: (key) => Cookies.getJSON(key),
+            setState: (key, state) => Cookies.set(key, state, { expires: 3, secure: true })
+        })
+    ],
     state: {
         current_video: null,
         videos: [],
@@ -76,12 +85,12 @@ export const store = new Vuex.Store({
                 col: q_col,
             },
             Sport50: {
-                content: ".",
+                content: "",
                 isClicked: false,
                 col: q50_col,
             },
             Sport100: {
-                content: ".",
+                content: "",
                 isClicked: false,
                 col: q100_col,
             },
@@ -305,6 +314,34 @@ export const store = new Vuex.Store({
             T11: { text: "Geschichte", nr: 11 },
             T12: { text: "Thema", nr: 12 },
         },
+        AnswerContent: {
+            T1: { q50: [], q100: [], q200: [] },
+            T2: { q50: [], q100: [], q200: [] },
+            T3: { q50: [], q100: [], q200: [] },
+            T4: { q50: [], q100: [], q200: [] },
+            T5: { q50: [], q100: [], q200: [] },
+            T6: { q50: [], q100: [], q200: [] },
+            T7: { q50: [], q100: [], q200: [] },
+            T8: { q50: [], q100: [], q200: [] },
+            T9: { q50: [], q100: [], q200: [] },
+            T10: { q50: [], q100: [], q200: [] },
+            T11: { q50: [], q100: [], q200: [] },
+            T12: { q50: [], q100: [], q200: [] }
+        },
+        QuestionContent: {
+            T1: [],
+            T2: [],
+            T3: [],
+            T4: [],
+            T5: [],
+            T6: [],
+            T7: [],
+            T8: [],
+            T9: [],
+            T10: [],
+            T11: [],
+            T12: [],
+        }
     },
     mutations: {
         changeTeamName(state, params) {
@@ -346,7 +383,46 @@ export const store = new Vuex.Store({
         },
         setCurrentVideo(state, item) {
             state.current_video = item.video
-        }
+        },
+        SaveQuestions(state, item) {
+            state.QuestionContent = item.questions
+            for (var question in item.questions) {
+                if (item.questions[question].q50) {
+                    state.Questions[state.Topics[question].text + 50].content = item.questions[question].q50
+
+                }
+                if (item.questions[question].q100) {
+                    state.Questions[state.Topics[question].text + 100].content = item.questions[question].q100
+
+                }
+                if (item.questions[question].q200) {
+                    state.Questions[state.Topics[question].text + 200].content = item.questions[question].q200
+
+                }
+
+            }
+
+
+        },
+        SaveAnswers(state, item) {
+            state.AnswerContent = item.answers
+            for (var answer in item.answers) {
+                if (item.answers[answer]) {
+                    state.Questions[state.Topics[answer].text + 50].answers = item.answers[answer].q50
+
+                }
+                if (item.answers[answer]) {
+                    state.Questions[state.Topics[answer].text + 100].answers = item.answers[answer].q100
+
+                }
+                if (item.answers[answer]) {
+                    state.Questions[state.Topics[answer].text + 200].answers = item.answers[answer].q200
+
+                }
+
+            }
+        },
+
     },
     getters: {
         Teams: state => state.Teams,
@@ -356,6 +432,8 @@ export const store = new Vuex.Store({
         videos: state => state.videos,
         current_video: state => state.current_video,
         Topics: state => state.Topics,
-        QuestionValues: state => state.QuestionValues
+        QuestionValues: state => state.QuestionValues,
+        QuestionContent: state => state.QuestionContent,
+        AnswerContent: state => state.AnswerContent,
     }
 })

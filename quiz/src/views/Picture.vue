@@ -59,7 +59,7 @@ export default {
       return require(`../assets/videos/${fileName}.gif`); // the module request
     },
     currentDate() {
-      let silvester = new Date(2019, 11, 29, 13, 51, 0, 0); //TODO
+      let silvester = new Date(2019, 11, 31, 20, 0, 0, 0); //TODO
       let d = Date.now() > silvester;
       return d
     }
