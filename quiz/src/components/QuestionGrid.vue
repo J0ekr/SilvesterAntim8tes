@@ -50,9 +50,9 @@ export default {
   },
   watch: {
     $route() {
-      window.console.log(this.$store.getters.GameCounter)
-      if (this.$store.getters.GameCounter >= 6) {
-        this.$store.commit("resetGameCounter");
+      window.console.log(this.$store.getters.QuizCounter)
+      if (this.$store.getters.QuizCounter >= 6) {
+        this.$store.commit("resetQuizCounter");
         this.$router.push("/Antim8s/Game");
       }
     }

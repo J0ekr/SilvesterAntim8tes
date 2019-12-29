@@ -2,11 +2,11 @@ import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
 import vuetify from './plugins/vuetify';
+import VueVisual from 'vue-visual'
 import { store } from './store/store'
 
-import VueFreezeGif from 'vue-freeze-gif'
-import 'vue-freeze-gif/lib/vue-freeze-gif.css'
-Vue.component('freeze', VueFreezeGif)
+Vue.component('visual', VueVisual)
+require('vue-visual/index.css')
 Vue.config.productionTip = false
 new Vue({
     el: '#app',

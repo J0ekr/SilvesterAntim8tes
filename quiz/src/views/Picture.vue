@@ -1,11 +1,23 @@
 <template>
-  <div id="app">
-    <h2>Random image in Vue.js:</h2>
-    <li v-if="selectedImage">
-      <freeze :source="selectedImage" />
-    </li>
-    <PointsFooter />
-  </div>
+  <v-container>
+    <div id="app">
+      <h2>Random image in Vue.js:</h2>
+      <!-- <div v-if="selectedVideo"> -->
+      <!-- <visual
+          transition="vv-fade"
+          controls
+          loop
+          mute
+          autoplay="visible"
+          autopause="visible"
+          :video="selectedVideo"
+      ></visual>-->
+      <v-img :src="Video"></v-img>
+      <!-- </div> -->
+
+      <PointsFooter />
+    </div>
+  </v-container>
 </template>
 
 <script>
@@ -16,45 +28,35 @@ export default {
   },
   data() {
     return {
-      images: [
-        require("@/assets/Dietrich.gif"),
-        require("@/assets/Erne.gif"),
-        require("@/assets/Frauke.gif")
-      ],
-
-      selectedImage: null
+      videos: [],
+      test_video: "../assets/videos/v1.gif",
+      selectedVideo: null,
+      selectedVideoRequired: null
     };
   },
-  computed: {
-    get_idx() {
-      let idx = [...Array(this.images.length).keys()];
-      return idx;
-    }
-  },
-  watch: {},
+
   methods: {
     randomItem(items) {
       let index = Math.floor(Math.random() * items.length);
-      this.$store.commit("UpdateImageIdx", index);
-      window.console.log(this.$store.getters.image_idx);
       return items[index];
     }
   },
   created() {
-    this.selectedImage = this.randomItem(this.images);
-    if (this.$store.getters.image_idx == null) {
-      window.console.log("init:", this.get_idx);
-      this.$store.commit("InitImageIdx", this.get_idx);
-    }
+    this.selectedVideo = this.randomItem(this.$store.getters.videos);
+    this.$store.commit("setCurrentVideo", { video: this.selectedVideo });
+  },
+  computed: {
+    Video() {
+      if (!this.selectedVideo) {
+        return;
+      }
 
-    // window.console.log(this.get_idx);
+      const fileName = this.selectedVideo.toLowerCase();
+
+      return require(`../assets/videos/${fileName}.gif`); // the module request
+    }
   }
 };
 </script>
-
 <style>
-li {
-  max-width: 256px;
-  max-height: 256px;
-}
 </style>

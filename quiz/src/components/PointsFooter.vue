@@ -29,21 +29,27 @@ export default {
   methods: {
     updatePoints(Team) {
       if (this.$route.params.id != null) {
-        this.$store.commit("increaseGameCounter");
+        this.$store.commit("increaseQuizCounter");
         this.$store.commit("changeQuestionIsClicked", this.qID);
         if (Team != "NoWinner") {
           let points = this.$route.params.points;
           this.$store.commit("changeTeamScore", { Team, points });
         }
         this.$router.push("/Antim8s/Quiz");
-      }
-      else {
+      } else {
+        this.$store.commit("removeVideo");
         if (Team != "NoWinner") {
-          let points = 20
+          let points = 20;
           this.$store.commit("changeTeamScore", { Team, points });
-          
         }
-        this.$router.go()
+        window.console.log(this.$store.getters.GameCount);
+        if (this.$store.getters.GameCount < 4) {
+          this.$store.commit("increaseGameCount");
+          this.$router.push("/Antim8s/Game");
+        } else {
+          this.$store.commit("resetGameCount");
+          this.$router.push("/Antim8s/Quiz");
+        }
       }
     }
   },

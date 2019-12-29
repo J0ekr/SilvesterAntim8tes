@@ -7,8 +7,10 @@ let q200_col = "cyan darken-2"
 Vue.use(Vuex)
 export const store = new Vuex.Store({
     state: {
-        image_idx: null,
-        GameCounter: 0,
+        current_video: null,
+        videos: [],
+        QuizCounter: 0,
+        GameCount: 0,
         Teams: {
             Team1: {
                 name: "Team1",
@@ -288,11 +290,17 @@ export const store = new Vuex.Store({
         changeTeamName(state, params) {
             state.Teams[params.Team].text = params.name
         },
-        increaseGameCounter(state) {
-            state.GameCounter += 1
+        increaseQuizCounter(state) {
+            state.QuizCounter += 1
         },
-        resetGameCounter(state) {
-            state.GameCounter = 0
+        resetQuizCounter(state) {
+            state.QuizCounter = 0
+        },
+        increaseGameCount(state) {
+            state.GameCount += 1
+        },
+        resetGameCount(state) {
+            state.GameCount = 0
         },
         changeTeamScore(state, event) {
             state.Teams[event.Team.name].score += parseInt(event.points)
@@ -303,24 +311,31 @@ export const store = new Vuex.Store({
             state.Questions[Question].isClicked = true
             state.Questions[Question].col = "grey"
         },
-        UpdateImageIdx(state, id) {
-            window.console.log("update", id)
-            if (state.image_idx != null) {
-                state.image_idx.splice(id, 1)
-                window.console.log("update penis", state.image_idx.splice(id, 1))
+        removeVideo(state) {
+            window.console.log("old_videos:", state.videos, store.getters.current_video)
+            var index = state.videos.indexOf(store.getters.current_video);
+            if (index > -1) {
+                state.videos.splice(index, 1);
             }
-            window.console.log("update after", state.image_idx)
+            window.console.log("video index:", index)
+            window.console.log("new_videos:", state.videos)
+        },
+        populateVideos(state, item) {
+            window.console.log(item.videos)
+
+            state.videos = item.videos
 
         },
-        InitImageIdx(state, idx) {
-            window.console.log("store", idx)
-            state.image_idx = idx
-        },
+        setCurrentVideo(state, item) {
+            state.current_video = item.video
+        }
     },
     getters: {
         Teams: state => state.Teams,
         Questions: state => state.Questions,
-        GameCounter: state => state.GameCounter,
-        image_idx: state => state.image_idx
+        QuizCounter: state => state.QuizCounter,
+        GameCount: state => state.GameCount,
+        videos: state => state.videos,
+        current_video: state => state.current_video
     }
 })
