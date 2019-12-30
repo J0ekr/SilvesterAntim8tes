@@ -19,7 +19,7 @@ export default new Router({
             component: Home,
         },
         {
-            path: '/Antim8s/Quiz',
+            path: '/Antim8s/Quiz/',
             name: "Quiz",
             component: Quiz,
             children: [{
@@ -50,17 +50,17 @@ export default new Router({
             }]
         },
         {
-            path: '/Antim8s/Settings',
+            path: '/Antim8s/Settings/',
             name: 'Settings',
             component: Settings
         },
         {
-            path: '/Antim8s/Upload',
+            path: '/Antim8s/Upload/',
             name: 'Upload',
             component: Upload,
         },
         {
-            path: '/Antim8s/Diashow',
+            path: '/Antim8s/Diashow/',
             name: 'Diashow',
             component: Diashow
         },

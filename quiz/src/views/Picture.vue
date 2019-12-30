@@ -1,7 +1,7 @@
 <template>
   <v-container>
     <div id="app">
-      <div> 
+      <div v-if="this.dateCheck">
       <visual
           transition="vv-fade"
           aspect='16:10'
@@ -11,9 +11,6 @@
           autopause="visible"
           :video="Video"
       ></visual>
-      </div>
-      <div v-if="this.dateCheck">
-        <v-img :src="Video"></v-img>
       </div>
       <div v-else>Bilder gibts erst ab Silvester ;)</div>
 

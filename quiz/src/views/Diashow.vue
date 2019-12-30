@@ -1,7 +1,8 @@
 <template>
+<v-content>
   <v-container>
     <div id="app">
-      <div>
+      <div v-if="this.dateCheck">
         <visual
           transition="vv-fade"
           aspect="16:10"
@@ -12,7 +13,7 @@
           :video="Video"
         ></visual>
       </div>
-      <div>Bilder gibts erst ab Silvester ;)</div>
+      <div v-else>Bilder gibts erst ab Silvester ;)</div>
       <v-footer app class="blue-grey darken-3">
         <v-row>
           <div align="center">
@@ -24,6 +25,7 @@
     </div>
     <router-view></router-view>
   </v-container>
+</v-content>
 </template>
 
 <script>
@@ -65,7 +67,7 @@ export default {
       return require(`../assets/videos/${fileName}.mp4`); // the module request
     },
     currentDate() {
-      let silvester = new Date(2019, 11, 29, 20, 0, 0, 0); //TODO
+      let silvester = new Date(2019, 11, 31, 20, 0, 0, 0); //TODO
       let d = Date.now() > silvester;
       return d;
     }

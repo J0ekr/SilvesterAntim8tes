@@ -1,6 +1,6 @@
 <template>
   <v-container>
-    <v-footer app class="blue-grey darken-3">
+    <v-footer app class="cyan darken-3">
       <v-row>
         <template v-for="t in this.$store.getters.Teams">
           <v-col v-bind:key="t.nr">

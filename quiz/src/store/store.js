@@ -2,7 +2,7 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import createPersistedState from 'vuex-persistedstate'
 import * as Cookies from 'js-cookie'
-
+import axios from 'axios'
 let q_col = "red lighten-2"
 let q50_col = "cyan lighten-1"
 let q100_col = "cyan darken-1"
@@ -281,22 +281,22 @@ export const store = new Vuex.Store({
                 isClicked: false,
                 col: q200_col,
             },
-            Thema: {
+            Sprachen: {
                 content: "",
                 isClicked: true,
                 col: q_col,
             },
-            Thema50: {
+            Sprachen50: {
                 content: "",
                 isClicked: false,
                 col: q50_col,
             },
-            Thema100: {
+            Sprachen100: {
                 content: "",
                 isClicked: false,
                 col: q100_col,
             },
-            Thema200: {
+            Sprachen200: {
                 content: "",
                 isClicked: false,
                 col: q200_col,
@@ -314,7 +314,7 @@ export const store = new Vuex.Store({
             T9: { text: "Filme", nr: 9 },
             T10: { text: "Unnützes", nr: 10 },
             T11: { text: "Geschichte", nr: 11 },
-            T12: { text: "Thema", nr: 12 },
+            T12: { text: "Sprachen", nr: 12 },
         },
         AnswerContent: {
             T1: { q50: [], q100: [], q200: [] },
@@ -343,7 +343,8 @@ export const store = new Vuex.Store({
             T10: [],
             T11: [],
             T12: [],
-        }
+        },
+        debug: 0,
     },
     mutations: {
         changeTeamName(state, params) {
@@ -375,13 +376,11 @@ export const store = new Vuex.Store({
             state.Questions[Question].col = "grey"
         },
         removeVideo(state) {
-            window.console.log("old_videos:", state.videos, store.getters.current_video)
             var index = state.videos.indexOf(store.getters.current_video);
             if (index > -1) {
                 state.videos.splice(index, 1);
             }
-            window.console.log("video index:", index)
-            window.console.log("new_videos:", state.videos)
+
         },
         populateVideos(state, item) {
             state.videos_og = item.videos
@@ -410,27 +409,45 @@ export const store = new Vuex.Store({
                 }
 
             }
+            // axios.post('http://leusmann.io/Antim8s/static', state.Questions)
 
 
         },
         SaveAnswers(state, item) {
             state.AnswerContent = item.answers
             for (var answer in item.answers) {
-                if (item.answers[answer]) {
-                    state.Questions[state.Topics[answer].text + 50].answers = item.answers[answer].q50
+                if (answer != "") {
+                    if (item.answers[answer] && item.answers[answer].q50 != "") {
+                        state.Questions[state.Topics[answer].text + 50].answers = item.answers[answer].q50
 
-                }
-                if (item.answers[answer]) {
-                    state.Questions[state.Topics[answer].text + 100].answers = item.answers[answer].q100
+                    }
+                    if (item.answers[answer] && item.answers[answer].q100 != "") {
+                        state.Questions[state.Topics[answer].text + 100].answers = item.answers[answer].q100
 
-                }
-                if (item.answers[answer]) {
-                    state.Questions[state.Topics[answer].text + 200].answers = item.answers[answer].q200
+                    }
+                    if (item.answers[answer] && item.answers[answer].q200 != "") {
+                        state.Questions[state.Topics[answer].text + 200].answers = item.answers[answer].q200
 
+                    }
                 }
 
             }
+
+
         },
+        SaveToServer(state, item) {
+            let url = 'https://leusmann.io/Antim8s/static/'
+            axios.post(url, item.data)
+        },
+        LoadFromServer(state) {
+            let data = null
+            axios
+                .get("https://leusmann.io/Antim8s/static/test.json")
+                .then(response => (data = response)
+                    .then(window.console.log(data)))
+                .catch(error => window.console.log(error));
+            window.console.log(state.debug)
+        }
 
     },
     getters: {
