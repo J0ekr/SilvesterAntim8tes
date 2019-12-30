@@ -5,6 +5,7 @@ import vuetify from './plugins/vuetify';
 import VueVisual from 'vue-visual'
 import { store } from './store/store'
 
+
 Vue.component('visual', VueVisual)
 require('vue-visual/index.css')
 Vue.config.productionTip = false

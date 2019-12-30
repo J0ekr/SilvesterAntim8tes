@@ -17,7 +17,9 @@ export const store = new Vuex.Store({
     ],
     state: {
         current_video: null,
+        dia_index: 1,
         videos: [],
+        videos_og: [],
         QuizCounter: 0,
         GameCount: 0,
         Teams: {
@@ -350,6 +352,12 @@ export const store = new Vuex.Store({
         increaseQuizCounter(state) {
             state.QuizCounter += 1
         },
+        increasediaidx(state) {
+            state.dia_index += 1
+        },
+        decreasediaidx(state) {
+            state.dia_index -= 1
+        },
         resetQuizCounter(state) {
             state.QuizCounter = 0
         },
@@ -376,9 +384,10 @@ export const store = new Vuex.Store({
             window.console.log("new_videos:", state.videos)
         },
         populateVideos(state, item) {
-            window.console.log(item.videos)
-
+            state.videos_og = item.videos
+            window.console.log(state.videos_og)
             state.videos = item.videos
+            window.console.log(state.videos)
 
         },
         setCurrentVideo(state, item) {
@@ -430,10 +439,12 @@ export const store = new Vuex.Store({
         QuizCounter: state => state.QuizCounter,
         GameCount: state => state.GameCount,
         videos: state => state.videos,
+        videos_og: state => state.videos_og,
         current_video: state => state.current_video,
         Topics: state => state.Topics,
         QuestionValues: state => state.QuestionValues,
         QuestionContent: state => state.QuestionContent,
         AnswerContent: state => state.AnswerContent,
+        dia_index: state => state.dia_index,
     }
 })

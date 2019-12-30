@@ -4,6 +4,7 @@ import Home from '@/views/Home'
 import Game from '@/views/Game'
 import Upload from '@/views/Upload'
 import Quiz from '@/views/Quiz'
+import Diashow from '@/views/Diashow'
 import Settings from '@/views/Settings'
 import Question from '@/views/Question'
 import Picture from '@/views/Picture'
@@ -57,10 +58,11 @@ export default new Router({
             path: '/Antim8s/Upload',
             name: 'Upload',
             component: Upload,
-            children: [{
-                path: ':topic',
-                name: 'topic'
-            }]
+        },
+        {
+            path: '/Antim8s/Diashow',
+            name: 'Diashow',
+            component: Diashow
         },
 
 

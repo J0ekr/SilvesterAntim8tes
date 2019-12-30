@@ -1,17 +1,17 @@
 <template>
   <v-container>
     <div id="app">
-      <h2>Random image in Vue.js:</h2>
-      <!-- <div v-if="selectedVideo"> -->
-      <!-- <visual
+      <div> 
+      <visual
           transition="vv-fade"
+          aspect='16:10'
           controls
-          loop
           mute
-          autoplay="visible"
+          autoplay="false"
           autopause="visible"
-          :video="selectedVideo"
-      ></visual>-->
+          :video="Video"
+      ></visual>
+      </div>
       <div v-if="this.dateCheck">
         <v-img :src="Video"></v-img>
       </div>
@@ -31,7 +31,6 @@ export default {
   data() {
     return {
       videos: [],
-      test_video: "../assets/videos/v1.gif",
       selectedVideo: null,
       selectedVideoRequired: null,
       dateCheck: false
@@ -56,7 +55,7 @@ export default {
       }
       const fileName = this.selectedVideo.toLowerCase();
 
-      return require(`../assets/videos/${fileName}.gif`); // the module request
+      return require(`../assets/videos/${fileName}.mp4`); // the module request
     },
     currentDate() {
       let silvester = new Date(2019, 11, 31, 20, 0, 0, 0); //TODO

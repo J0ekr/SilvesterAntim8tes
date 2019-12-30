@@ -21,14 +21,13 @@ export default {
   },
   methods: {
     addVideos() {
-      const videos = require.context("@/assets/", true, /^.*\.gif$/);
+      const videos = require.context("@/assets/", true, /^.*\.mp4$/);
       var keys = videos.keys();
       var v_list = []
-      for (let index = 1; index < keys.length+1; index++) {
+      for (let index = 0; index < keys.length; index++) {
         v_list.push("v"+index)
         
       }
-      window.console.log(v_list)
       this.$store.commit("populateVideos", { videos: v_list });
     }
   },

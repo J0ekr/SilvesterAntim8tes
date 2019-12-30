@@ -5,13 +5,13 @@
         <template v-for="t in this.$store.getters.Teams">
           <v-col v-bind:key="t.nr">
             <v-card class="text-center pa-2" outlined tile @click="updatePoints(t)">
-              <div>Win {{t.text}}</div>
+              <div><b>Win</b> {{t.text}}</div>
             </v-card>
           </v-col>
         </template>
         <v-col>
           <v-card class="text-center pa-2" outlined tile @click="updatePoints(NoWinner)">
-            <div>No Winner</div>
+            <div><b>No Winner</b></div>
           </v-card>
         </v-col>
       </v-row>
