@@ -8,6 +8,7 @@ import Diashow from '@/views/Diashow'
 import Settings from '@/views/Settings'
 import Question from '@/views/Question'
 import Picture from '@/views/Picture'
+import CreateTopic from '@/views/CreateTopic'
 
 Vue.use(Router)
 
@@ -63,6 +64,11 @@ export default new Router({
             path: '/Antim8s/Diashow/',
             name: 'Diashow',
             component: Diashow
+        },
+        {
+            path: '/Antim8s/Create/',
+            name: 'Create Topic',
+            component: CreateTopic
         },
 
 

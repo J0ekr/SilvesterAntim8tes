@@ -35,7 +35,8 @@
         { icon: 'mdi-settings', text: 'Settings', route: '/Antim8s/Settings' },
         { icon: 'mdi-play', text: 'Game', route: '/Antim8s/Game' },
         { icon: 'mdi-upload', text: 'Upload', route: '/Antim8s/Upload' },
-        { icon: 'mdi-library-video', text: 'Diashow', route: '/Antim8s/Diashow' }
+        { icon: 'mdi-library-video', text: 'Diashow', route: '/Antim8s/Diashow' },
+        { icon: 'mdi-upload', text: 'Create', route: '/Antim8s/Create'}
       ]
       }
     },

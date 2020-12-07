@@ -302,6 +302,7 @@ export const store = new Vuex.Store({
                 col: q200_col,
             },
         },
+        newTopics: [],
         Topics: {
             T1: { text: "Politik", nr: 1 },
             T2: { text: "Sport", nr: 2 },
@@ -413,6 +414,14 @@ export const store = new Vuex.Store({
 
 
         },
+        AddTopic(state, item) {
+            window.console.log("store: ", state, item);
+            
+            state.newTopics.push({element: item});
+            window.console.log("storeAfter: ", state.newTopics);
+           
+            
+        },
         SaveAnswers(state, item) {
             state.AnswerContent = item.answers
             for (var answer in item.answers) {
@@ -463,5 +472,7 @@ export const store = new Vuex.Store({
         QuestionContent: state => state.QuestionContent,
         AnswerContent: state => state.AnswerContent,
         dia_index: state => state.dia_index,
+        newTopics: state => state.newTopics,
+
     }
 })
