@@ -30,7 +30,7 @@ export default {
     updatePoints(Team) {
       if (this.$route.params.id != null) {
         this.$store.commit("increaseQuizCounter");
-        this.$store.commit("changeQuestionIsClicked", this.qID);
+        this.$store.commit("changeQuestionIsClicked", {q: this.$route.params.id, v: this.$route.params.points});
         if (Team != "NoWinner") {
           let points = this.$route.params.points;
           this.$store.commit("changeTeamScore", { Team, points });
@@ -60,7 +60,9 @@ export default {
   created() {
     this.NoWinner = "NoWinner";
     this.qID = this.$route.params.id + this.$route.params.points;
-    this.question = this.$store.getters.Questions[this.qID];
+    this.question = this.$store.getters.newTopics[this.$route.params.id][
+      "q" + this.$route.params.points
+    ];
   }
 };
 </script>

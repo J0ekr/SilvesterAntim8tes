@@ -44,7 +44,8 @@ export default {
     return {
       loginRules: [v => !!v || "The input is required"],
       input: null,
-      currentTeam: null
+      currentTeam: null,
+      TeamFilled: false,
     };
   },
   watch: {

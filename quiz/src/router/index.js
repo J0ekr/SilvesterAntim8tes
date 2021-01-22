@@ -71,8 +71,5 @@ export default new Router({
             component: CreateTopic
         },
 
-
-
-
     ]
 })

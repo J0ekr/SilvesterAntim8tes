@@ -8,6 +8,7 @@ import { store } from './store/store'
 
 Vue.component('visual', VueVisual)
 require('vue-visual/index.css')
+
 Vue.config.productionTip = false
 new Vue({
     el: '#app',
