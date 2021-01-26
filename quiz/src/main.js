@@ -4,6 +4,8 @@ import router from './router'
 import vuetify from './plugins/vuetify';
 import VueVisual from 'vue-visual'
 import { store } from './store/store'
+import 'material-design-icons-iconfont/dist/material-design-icons.css'
+import '@mdi/font/css/materialdesignicons.css'
 
 
 Vue.component('visual', VueVisual)

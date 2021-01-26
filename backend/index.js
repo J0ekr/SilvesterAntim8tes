@@ -1,52 +1,53 @@
 const express = require('express');
-const multer = require('multer');
 const cors = require('cors');
-// var compression = require('compression');
-// var helmet = require('helmet');
+var fs = require('fs');
+var http = require('http');
+var https = require('https');
+var privateKey = fs.readFileSync('/home/joekr/etc/certificates/leusmann.io.key', 'utf8');
+var certificate = fs.readFileSync('/home/joekr/etc/certificates/leusmann.io.crt', 'utf8');
+var credentials = { key: privateKey, cert: certificate };
 const app = express();
 app.use(cors());
-// app.use(compression());
-// app.use(helmet());
+app.use(express.json());
 
-const fileFilter = (req, file, cb) => {
-    const allowedTypes = ["text/json"];
-    if (!allowedTypes.includes(file.mimetype)) {
-        const error = new Error("Incorrect file");
-        error.code = "INCORRECT_FILETYPE";
-        return cb(error, false)
+
+const PORT = '46980' || process.env.PORT;
+
+app.use(function (req, res, next) {
+    res.header("Access-Control-Allow-Origin", "https://leusmann.io"); // update to match the domain you will make the request from
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    next();
+});
+
+app.post('/uploads', function (request, response) {
+    const jsonData = request.body
+    try {
+        const filename = "./uploads/" + jsonData.topic.text + Date.now() + ".json"
+        console.log(filename)
+        fs.writeFile(filename, JSON.stringify(jsonData), function (err) {
+            if (err) {
+                console.log(err);
+            }
+        });
     }
-    cb(null, true)
+    catch (err) {
+        console.log(err)
+    }
+
+    response.send(jsonData)
+});
+var jsons = []
+var files = fs.readdirSync('./uploads/')
+
+for (let index = 0; index < files.length; index++) {
+    const file = files[index];
+    const tmp2 = JSON.parse(fs.readFileSync('./uploads/' + file, 'utf-8'))
+    // console.log(tmp, tmp2)
+    jsons.push(tmp2)
 }
-
-var storage = multer.diskStorage({
-    destination: function(req, file, cb) {
-        cb(null, './uploads');
-     },
-    filename: function (req, file, cb) {
-        cb(null ,Date.now() + file.originalname);
-    }
+app.get('/topics', function (req, res) {
+    const tmp = res.send(jsons);
 });
-const upload = multer({
-    dest: './uploads',
-    storage: storage,
-    // fileFilter,
-    // limits: {
-    //     fileSize: 500000
-    // }
-});
-
-const PORT = '5000' || process.env.PORT;
-
-
-
-app.post('/uploads', upload.single('file'), async (req, res) => {
-    res.json({ file: req.file});
-    // const fileName = name + file.detectedFileExtension;
-    // await pipeline(file.stream, fs.createWriteStream(`${__dirname}/../quiz/data/${fileName}`));
-    console.log(req.file.filename);
-    // res.send("File uploaded as " + fileName);
-});
-
 
 app.use((err, req, res, next) => {
     if (err.code === "INCORRECT_FILETYPE") {
@@ -59,4 +60,10 @@ app.use((err, req, res, next) => {
     }
 });
 
-app.listen(PORT, () => console.log(`Server listening on port ${PORT}`));
+// app.listen(PORT, '0.0.0.0', () => console.log(`Server listening on port ${PORT}`));
+
+var httpServer = http.createServer(app);
+var httpsServer = https.createServer(credentials, app);
+
+httpServer.listen(8080);
+httpsServer.listen(PORT, () => console.log(`Server listening on port ${PORT}`));

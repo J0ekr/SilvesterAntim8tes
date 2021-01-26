@@ -203,47 +203,19 @@ export default {
       }
     },
     async onSubmit() {
-      window.console.log("onSubmit");
-      const formData = new FormData();
-      formData.append("file", this.file);
-      try {
-        await axios.post("http://localhost:5000/uploads", formData);
-        this.message = "success";
-      } catch (err) {
-        window.console.log(err);
-        this.message = "error";
-      }
+      const data = JSON.stringify(this.element);
+      window.console.log("onSubmit", data);
+      const res = await axios.post("https://leusmann.io:46980/uploads", data, {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
     },
     submit() {
       this.$refs.form.validate();
       if (this.$refs.form.validate()) {
         window.console.log(this.element.topic.text);
         // this.$store.commit("AddTopic", this.element);
-        const data = JSON.stringify(this.element);
-        const blob = new Blob([data], { type: "text/plain" });
-        const e = document.createEvent("MouseEvents"),
-          a = document.createElement("a");
-        a.download = this.element.topic.text + ".json";
-        a.href = window.URL.createObjectURL(blob);
-        a.dataset.downloadurl = ["text/json", a.download, a.href].join(":");
-        e.initEvent(
-          "click",
-          true,
-          false,
-          window,
-          0,
-          0,
-          0,
-          0,
-          0,
-          false,
-          false,
-          false,
-          false,
-          0,
-          null
-        );
-        a.dispatchEvent(e);
         this.onSubmit();
       } else {
         window.console.log("Not all fields have been filled.");

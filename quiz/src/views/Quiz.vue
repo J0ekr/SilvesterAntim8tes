@@ -1,7 +1,7 @@
 <template>
   <v-main>
-    <QuestionGrid />
-    <Score />
+    <v-btn v-if="!loading && !ready" @click="pressPlay">Play</v-btn>
+    <div v-if="ready"><Score /><QuestionGrid /></div>
     <router-view></router-view>
   </v-main>
 </template>
@@ -9,28 +9,44 @@
 <script>
 import QuestionGrid from "@/components/QuestionGrid";
 import Score from "@/components/Score";
+import axios from "axios";
+
 // import a from "@/../data/a.json";
 export default {
   name: "Quiz",
   components: {
-    QuestionGrid,
     Score,
+    QuestionGrid,
   },
   data() {
     return {
       isEmpty: true,
+      jsons: [],
+      loading: true,
+      ready: false,
     };
   },
-  methods: {},
+  methods: {
+    pressPlay() {
+      this.ready = true;
+      this.$store.commit("resetPoints");
+    },
+  },
+  mounted() {
+    window.console.log("mounted");
+    axios
+      .get("https://leusmann.io:46980/topics")
+      .then((response) => {
+        window.console.log("response", response.data);
+        response.data.forEach((element) => {
+          window.console.log("element: ", element);
+          this.$store.commit("AddTopic", element);
+        });
+      })
+      .catch((error) => window.console.log(error))
+      .finally(() => (this.loading = false));
+  },
   created() {
-    const tmp = require.context("./../../../backend/uploads", true, /^.*\.json$/);
-    window.console.log(this.$store.getters.newTopics.length, tmp.keys().length);
-    if (this.$store.getters.newTopics.length != tmp.keys().length) {
-      tmp.keys().forEach((element) => {
-        this.$store.commit("AddTopic", tmp(element));
-      });
-      this.isEmpty = false;
-    }
   },
 };
 </script>

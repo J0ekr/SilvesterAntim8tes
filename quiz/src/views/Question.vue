@@ -30,6 +30,7 @@
                 >{{ a.answer }}
               </v-card>
             </v-col>
+             <!-- <v-responsive v-if="i === 1" :key="i" width="100%"></v-responsive> -->
           </template>
         </v-row>
       </v-container>

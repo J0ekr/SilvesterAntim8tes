@@ -29,6 +29,7 @@ export default {
   methods: {
     updatePoints(Team) {
       if (this.$route.params.id != null) {
+        window.console.log(this.$store.getters.Teams);
         this.$store.commit("increaseQuizCounter");
         this.$store.commit("changeQuestionIsClicked", {q: this.$route.params.id, v: this.$route.params.points});
         if (Team != "NoWinner") {

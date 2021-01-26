@@ -1,5 +1,5 @@
 <template>
-  <v-container class="orange lighten-5">
+  <v-container class="grey lighten-5">
     <v-row>
       <template v-for="t in this.$store.getters.Teams">
         <v-col v-bind:key="t.nr">
