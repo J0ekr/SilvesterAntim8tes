@@ -5,18 +5,18 @@
     <v-container>
       <v-row class="md-6">
         <v-col v-bind:key="0">
-          <v-card class="flat text-center pa-2 grey lighten-1"
+          <v-card cols=4 class="flat text-center pa-2 grey lighten-1"
             >Number of Teams</v-card
           >
         </v-col>
         <v-col>
           <v-text-field
             class="pa-2"
-            :v-model="numberOfTeams"
+            v-model="numberOfTeams"
             :rules="loginRules"
             outlined
             clearable
-            @keydown.enter="updateTeams($event)"
+            @keydown.enter="updateTeams"
           ></v-text-field>
         </v-col>
       </v-row>
@@ -24,37 +24,17 @@
     <router-view></router-view>
 
     <h1>Change Team Names</h1>
-    <h3>Press Enter to confirm</h3>
     <v-container>
       <v-row>
-        <v-col v-bind:key="0">
-          <v-card class="flat text-center pa-2 grey lighten-1"
-            >New Names</v-card
-          >
-        </v-col>
         <template v-for="t in this.$store.getters.Teams">
-          <v-col v-bind:key="t.nr">
+          <v-col v-bind:key="t.nr" cols=6 lg=4>
             <v-text-field
               class="pa-2"
-              :v-model="t.text"
+              v-model="t.text"
               :rules="loginRules"
               :label="t.name"
               outlined
-              clearable
-              @keydown.enter="updateName(t.name, $event)"
             ></v-text-field>
-          </v-col>
-        </template>
-      </v-row>
-      <v-row>
-        <v-col v-bind:key="100">
-          <v-card class="flat text-center pa-2 grey lighten-1"
-            >Current Names</v-card
-          >
-        </v-col>
-        <template v-for="t in this.$store.getters.Teams">
-          <v-col v-bind:key="t.nr">
-            <v-card class="flat text-center pa-2">{{ t.text }}</v-card>
           </v-col>
         </template>
       </v-row>
@@ -82,16 +62,30 @@ export default {
   },
   created() {
     this.$store.getters.Teams;
+    this.numberOfTeams = Object.keys(this.$store.getters.Teams).length;
   },
   methods: {
-    updateTeams(event) {
-      window.console.log(event.target.value);
-      var teams = {};
-      for (let index = 1; index <= event.target.value; index++) {
+    updateTeams() {
+      var teams = this.$store.getters.Teams;
+      teams = Object.keys(teams)
+        .slice(0, this.numberOfTeams)
+        .reduce((result, key) => {
+          result[key] = teams[key];
+
+          return result;
+        }, {});
+      for (let index = 1; index <= this.numberOfTeams; index++) {
         const tmp = "Team" + index;
+        var text = "Team " + index;
+        try {
+          text = teams[tmp].text;
+        } catch (err) {
+          window.console.log("Not yet created");
+        }
+
         teams[tmp] = {
           name: "Team" + index,
-          text: "Team " + index,
+          text: text,
           score: 0,
           nr: index,
         };

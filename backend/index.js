@@ -41,12 +41,17 @@ var files = fs.readdirSync('./uploads/')
 
 for (let index = 0; index < files.length; index++) {
     const file = files[index];
-    const tmp2 = JSON.parse(fs.readFileSync('./uploads/' + file, 'utf-8'))
-    // console.log(tmp, tmp2)
-    jsons.push(tmp2)
+    try {
+        const tmp2 = JSON.parsefs.readFileSync('./uploads/' + file, 'utf-8'))
+        // console.log(tmp, tmp2)
+        jsons.push(tmp2)
+    } catch (err) {
+        console.log(err)
+    }
+
 }
 app.get('/topics', function (req, res) {
-    const tmp = res.send(jsons);
+    res.send(jsons);
 });
 
 app.use((err, req, res, next) => {

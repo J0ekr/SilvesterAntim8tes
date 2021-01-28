@@ -9,6 +9,7 @@ import Settings from '@/views/Settings'
 import Question from '@/views/Question'
 import Picture from '@/views/Picture'
 import CreateTopic from '@/views/CreateTopic'
+import EndScreen from '@/views/EndScreen'
 
 Vue.use(Router)
 
@@ -69,6 +70,11 @@ export default new Router({
             path: '/Antim8s/Create/',
             name: 'Create Topic',
             component: CreateTopic
+        },
+        {
+            path: '/Antim8s/EndScreen/',
+            name: 'EndScreen',
+            component: EndScreen
         },
 
     ]

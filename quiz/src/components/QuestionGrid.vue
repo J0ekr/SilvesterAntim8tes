@@ -1,14 +1,18 @@
 <template>
-  <v-container class="grey lighten-5">
+  <v-container>
     <v-row :key="componentKey">
-      <template v-for="t in $store.getters.newTopics">
-        <v-col :key="t.topic.text">
-          <v-card :color="t.topic.color" class="pa-2" outlined tile>{{
-            t.topic.text
-          }}</v-card>
+      <template v-for="t in $store.getters.Topics">
+        <v-col :key="t.topic.text" cols="6" lg=2 md=3 sm=4 class="justify-space-between text-center pa-2">
+          <v-card
+            :color="t.topic.color"
+            class="justify-space-between text-center pa-2"
+            outlined
+            tile
+            >{{ t.topic.text }}</v-card
+          >
           <v-card
             :color="t.q50.color"
-            class="pa-2"
+            class="justify-space-between text-center pa-2"
             outlined
             tile
             :disabled="t.q50.isClicked"
@@ -19,7 +23,7 @@
           >
           <v-card
             :color="t.q100.color"
-            class="pa-2"
+            class="justify-space-between text-center pa-2"
             outlined
             tile
             :disabled="t.q100.isClicked"
@@ -30,7 +34,7 @@
           >
           <v-card
             :color="t.q200.color"
-            class="pa-2"
+            class="justify-space-between text-center pa-2"
             outlined
             tile
             :disabled="t.q200.isClicked"
@@ -56,12 +60,18 @@ export default {
 
   watch: {
     $route() {
-      window.console.log(this.$store.getters.QuizCounter);
+      window.console.log(
+        this.$store.getters.QuizCounter,
+        Object.keys(this.$store.getters.Topics).length * 3
+      );
+
       this.forceRerender();
-      // if (this.$store.getters.QuizCounter >= 6) {
-      //   this.$store.commit("resetQuizCounter");
-      //   this.$router.push("/Antim8s/Game");
-      // }
+      if (
+        this.$store.getters.QuizCounter >=
+        Object.keys(this.$store.getters.Topics).length * 3
+      ) {
+        this.$router.push("/Antim8s/EndScreen");
+      }
     },
   },
   methods: {

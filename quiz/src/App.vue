@@ -39,3 +39,11 @@ export default {
   mounted() {}
 };
 </script>
+<style>
+.v-application {
+   font-size: 20px
+ }
+ .v-main {
+   font-size: 20px
+ }
+</style>

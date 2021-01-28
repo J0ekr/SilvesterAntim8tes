@@ -32,7 +32,7 @@
       links: [
         { icon: 'mdi-view-dashboard', text: 'Home', route: '/Antim8s/' },
         { icon: 'mdi-folder', text: 'Quiz', route: '/Antim8s/Quiz' },
-        { icon: 'mdi-cog', text: 'Settings', route: '/Antim8s/Settings' },
+        // { icon: 'mdi-cog', text: 'Settings', route: '/Antim8s/Settings' },
         // { icon: 'mdi-play', text: 'Game', route: '/Antim8s/Game' },
         // { icon: 'mdi-upload', text: 'Upload', route: '/Antim8s/Upload' },
         // { icon: 'mdi-library-video', text: 'Diashow', route: '/Antim8s/Diashow' },

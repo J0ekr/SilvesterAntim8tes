@@ -1,10 +1,22 @@
 <template>
   <v-app>
     <v-main>
-      <v-form ref="form" v-model="valid" lazy-validation>
+      <v-form
+        ref="form"
+        v-model="valid"
+        lazy-validation
+        :disabled="dialogLoading"
+      >
         <v-container>
           <v-layout>
             <v-flex>
+              <v-alert dense text type="success" v-if="success">
+                <strong>Success!</strong> Your topic is created.
+              </v-alert>
+              <v-alert dense text type="error" v-if="error">
+                <strong>Error!</strong> There was an error uploading your topic.
+                Try again or message the server admin.
+              </v-alert>
               <v-text-field
                 dense
                 outlined
@@ -26,7 +38,7 @@
                 required
               ></v-text-field>
               <v-row>
-                <v-col>
+                <v-col cols="6" md="3" lg="3">
                   <v-text-field
                     dense
                     outlined
@@ -38,7 +50,7 @@
                   ></v-text-field>
                 </v-col>
                 <template v-for="a in 3">
-                  <v-col v-bind:key="a">
+                  <v-col v-bind:key="a" cols="6" md="3" lg="3">
                     <v-text-field
                       dense
                       outlined
@@ -63,7 +75,7 @@
                 required
               ></v-text-field>
               <v-row>
-                <v-col>
+                <v-col cols="6" md="3" lg="3">
                   <v-text-field
                     dense
                     outlined
@@ -75,7 +87,7 @@
                   ></v-text-field>
                 </v-col>
                 <template v-for="a in 3">
-                  <v-col v-bind:key="a">
+                  <v-col v-bind:key="a" cols="6" md="3" lg="3">
                     <v-text-field
                       dense
                       outlined
@@ -99,7 +111,7 @@
                 required
               ></v-text-field>
               <v-row>
-                <v-col>
+                <v-col cols="6" md="3" lg="3">
                   <v-text-field
                     dense
                     outlined
@@ -111,7 +123,7 @@
                   ></v-text-field>
                 </v-col>
                 <template v-for="a in 3">
-                  <v-col v-bind:key="a">
+                  <v-col v-bind:key="a" cols="6" md="3" lg="3">
                     <v-text-field
                       dense
                       outlined
@@ -137,21 +149,19 @@
               Submit
             </v-btn>
           </v-row>
-          <v-row>
-            <v-card class="mt-6">
-              <form @submit.prevent="onSubmit" enctype="multipart/form-data">
-                <div class="fields">
-                  <input type="file" ref="file" @change="onSelect" />
-                </div>
-              </form>
-              <br />
-              <v-btn :color="this.message" class="mr-6" @click="onSubmit">
-                Upload
-              </v-btn>
-            </v-card>
-          </v-row>
         </v-container>
       </v-form>
+      <v-dialog v-model="dialogLoading" hide-overlay persistent width="300"
+        ><v-card color="primary" dark>
+          <v-card-text>
+            Uploading
+            <v-progress-linear
+              indeterminate
+              color="white"
+              class="mb-0"
+            ></v-progress-linear>
+          </v-card-text> </v-card
+      ></v-dialog>
     </v-main>
   </v-app>
 </template>
@@ -164,6 +174,10 @@ export default {
   data() {
     return {
       valid: true,
+      dialogLoading: false,
+      dialogDone: false,
+      success: false,
+      error: false,
       message: "grey",
       file: "",
       element: {
@@ -195,21 +209,28 @@ export default {
   },
 
   methods: {
-    onSelect() {
-      const file = this.$refs.file.files[0];
-      this.file = file;
-      if (file.size > 500000) {
-        this.message = "Too large, max size allowed is 500kb";
-      }
-    },
     async onSubmit() {
       const data = JSON.stringify(this.element);
       window.console.log("onSubmit", data);
-      const res = await axios.post("https://leusmann.io:46980/uploads", data, {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
+      this.dialogLoading = true;
+      await axios
+        .post("https://leusmann.io:46980/uploads", data, {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        })
+        .then((response) => {
+          this.reset();
+          this.success = true;
+          window.console.log(response);
+        })
+        .catch((error) => {
+          this.error = true;
+          window.console.log(error);
+        })
+        .finally(() => {
+          this.dialogLoading = false;
+        });
     },
     submit() {
       this.$refs.form.validate();
@@ -221,9 +242,21 @@ export default {
         window.console.log("Not all fields have been filled.");
       }
     },
+    reset() {
+      this.success = false;
+      this.error = false;
+    },
   },
 };
 </script>
 
 <style>
+.submit-success {
+  background-color: darkgreen;
+  opacity: 0.4;
+}
+.submit-error {
+  background-color: crimson;
+  opacity: 0.4;
+}
 </style>

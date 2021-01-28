@@ -22,6 +22,7 @@ export const store = new Vuex.Store({
         videos_og: [],
         QuizCounter: 0,
         GameCount: 0,
+        isPlaying: false,
         Teams: {
             Team1: {
                 name: "Team1",
@@ -54,7 +55,7 @@ export const store = new Vuex.Store({
                 nr: 5
             },
         },
-        newTopics: {},
+        Topics: {},
     },
     mutations: {
         changeTeamNumber(state, params) {
@@ -85,9 +86,9 @@ export const store = new Vuex.Store({
             state.Teams[event.Team.name].score += parseInt(event.points)
         },
         changeQuestionIsClicked(state, value) {
-            window.console.log(state.newTopics, value.q, value.v);
-            state.newTopics[value.q]["q" + value.v].isClicked = true
-            state.newTopics[value.q]["q" + value.v].color = "grey"
+            window.console.log(state.Topics, value.q, value.v);
+            state.Topics[value.q]["q" + value.v].isClicked = true
+            state.Topics[value.q]["q" + value.v].color = "grey"
         },
         removeVideo(state) {
             var index = state.videos.indexOf(store.getters.current_video);
@@ -119,26 +120,26 @@ export const store = new Vuex.Store({
                 }
                 if (item.questions[question].q200) {
                     state.Questions[state.Topics[question].text + 200].content = item.questions[question].q200
-
                 }
-
             }
-            // axios.post('http://leusmann.io/Antim8s/static', state.Questions)
-
-
         },
         AddTopic(state, item) {
-            window.console.log("store: ", state, item);
             var obj = {};
             obj[item.topic.text] = item;
             obj["name"] = item.topic.text;
-            state.newTopics[item.topic.text] = item;
-            window.console.log("storeAfter: ", state.newTopics);
+            state.Topics[item.topic.text] = item;
+        },
+        startGame(state) {
+            state.isPlaying = true;
+        },
+        endGame(state) {
+            state.isPlaying = false;
         },
         resetScore(state) {
-            (state.Teams).forEach(element => {
-                element.score = 0;
+            Object.keys(state.Teams).forEach(function (key) {
+                state.Teams[key].score = 0;
             });
+            state.QuizCounter = 0;
         },
         SaveAnswers(state, item) {
             state.AnswerContent = item.answers
@@ -190,7 +191,7 @@ export const store = new Vuex.Store({
         QuestionContent: state => state.QuestionContent,
         AnswerContent: state => state.AnswerContent,
         dia_index: state => state.dia_index,
-        newTopics: state => state.newTopics,
+        isPlaying: state => state.isPlaying,
 
     }
 })
